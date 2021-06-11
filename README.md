@@ -3,8 +3,8 @@ Zyltech Frame Brace
 Printed X/Y belt tensioners  
 Y Stepper mount brace  
 Printed Z axis leadscrew holders  
-0.9 Stepper motors all around  
+LDO 0.9 stepper motors X/Y/Z  
+1.8 motor on E 
 TMC2209 in UART Mode  
-e3d v6 with BMG in direct drive  
-BLTouch  
+Dragon Afterburner with Omron Probe    
 
