@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.d69aa64000ee75674aa6af15afe50f4d.js"
+  "/precache-manifest.67a02d891a320958de7012d2bdf6409c.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "fluidd"});
