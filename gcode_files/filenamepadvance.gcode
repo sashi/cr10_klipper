@@ -1,0 +1,574 @@
+; ### Klipper Pressure Advance Calibration Pattern ###
+; -------------------------------------------
+;
+; Printer: printer name
+; Filament: filament name
+; Created: Sat Feb 05 2022 15:49:23 GMT-0800 (Pacific Standard Time)
+;
+; Settings Printer:
+; Filament Diameter = 1.75 mm
+; Nozzle Diameter = 0.4 mm
+; Start G-code = ; M190 S70; <-- SET BED TEMPERATURE HERE - Wait to heat bed
+; M109 S230 ; <-- SET NOZZLE TEMPERATURE HERE - Wait to heat extruder for homing accuracy
+; START_PRINT T_BED=70 T_EXTRUDER=230
+; End G-code = ; END_PRINT
+; Retraction Distance = 0.5 mm
+; Layer Height = 0.25 mm
+; Fan Speed = 0 %
+; Z-axis Offset = 0 mm
+;
+; Settings Print Bed:
+; Bed Size X = 310 mm
+; Bed Size Y = 310 mm
+;
+; Settings Speed:
+; Slow Printing Speed = 300 mm/min
+; Fast Printing Speed = 7200 mm/min
+; Movement Speed = 6000 mm/min
+; Retract Speed = 3000 mm/min
+; Unretract Speed = 1800 mm/min
+; Printing Acceleration = 2000 mm/s^2
+;
+; Settings Pattern:
+; Starting Value Factor = 0
+; Ending Value Factor = 0.1
+; Factor Stepping = 0.005
+; Test Line Spacing = 5 mm
+; Test Line Length Slow = 20 mm
+; Test Line Length Fast = 40 mm
+; Print Pattern = Standard
+; Print Frame = true
+; Number Lines = true
+; Print Size X = 88 mm
+; Print Size Y = 125 mm
+; Print Rotation = 0 degree
+;
+; Settings Advance:
+; Nozzle / Line Ratio = 1.2
+; Use FWRETRACT = false
+; Extrusion Multiplier = 1
+; Prime Nozzle = false
+; Prime Extrusion Multiplier = 2.5
+; Prime Speed = 1800
+; Dwell Time = 0 s
+;
+; prepare printing
+;
+M190 S70; <-- SET BED TEMPERATURE HERE - Wait to heat bed
+M109 S230 ; <-- SET NOZZLE TEMPERATURE HERE - Wait to heat extruder for homing accuracy
+START_PRINT T_BED=70 T_EXTRUDER=230
+G21 ; Millimeter units
+G90 ; Absolute XYZ
+M83 ; Relative E
+SET_VELOCITY_LIMIT ACCEL=2000 ACCEL_TO_DECEL=1000 ; Acceleration
+G92 E0 ; Reset extruder distance
+M106 S0
+G1 X155 Y155 F6000 ; move to start
+G1 Z0.25 F300 ; Move to layer height
+;
+; print anchor frame
+G1 X111 Y89.5 F6000 ; move to start
+G1 X111 Y195.5 E5.8172 F300 ; print line
+G1 X111.48 Y195.5 F6000 ; move to start
+G1 X111.48 Y89.5 E5.8172 F300 ; print line
+G1 E-0.5 F3000 ; retract
+G1 X191 Y89.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X191 Y195.5 E5.8172 F300 ; print line
+G1 X190.52 Y195.5 F6000 ; move to start
+G1 X190.52 Y89.5 E5.8172 F300 ; print line
+G1 E-0.5 F3000 ; retract
+;
+; start the Test pattern
+;
+G1 X111 Y92.5 F6000 ; move to start
+SET_PRESSURE_ADVANCE ADVANCE=0 ; set Pressure Advance
+M117 K0 ; 
+G1 E0.5 F1800 ; un-retract
+G1 X131 Y92.5 E0.9978 F300 ; print line
+G1 X171 Y92.5 E1.99561 F7200 ; print line
+G1 X191 Y92.5 E0.9978 F300 ; print line
+G1 E-0.5 F3000 ; retract
+G1 X111 Y97.5 F6000 ; move to start
+SET_PRESSURE_ADVANCE ADVANCE=0.005 ; set Pressure Advance
+M117 K0.005 ; 
+G1 E0.5 F1800 ; un-retract
+G1 X131 Y97.5 E0.9978 F300 ; print line
+G1 X171 Y97.5 E1.99561 F7200 ; print line
+G1 X191 Y97.5 E0.9978 F300 ; print line
+G1 E-0.5 F3000 ; retract
+G1 X111 Y102.5 F6000 ; move to start
+SET_PRESSURE_ADVANCE ADVANCE=0.01 ; set Pressure Advance
+M117 K0.01 ; 
+G1 E0.5 F1800 ; un-retract
+G1 X131 Y102.5 E0.9978 F300 ; print line
+G1 X171 Y102.5 E1.99561 F7200 ; print line
+G1 X191 Y102.5 E0.9978 F300 ; print line
+G1 E-0.5 F3000 ; retract
+G1 X111 Y107.5 F6000 ; move to start
+SET_PRESSURE_ADVANCE ADVANCE=0.015 ; set Pressure Advance
+M117 K0.015 ; 
+G1 E0.5 F1800 ; un-retract
+G1 X131 Y107.5 E0.9978 F300 ; print line
+G1 X171 Y107.5 E1.99561 F7200 ; print line
+G1 X191 Y107.5 E0.9978 F300 ; print line
+G1 E-0.5 F3000 ; retract
+G1 X111 Y112.5 F6000 ; move to start
+SET_PRESSURE_ADVANCE ADVANCE=0.02 ; set Pressure Advance
+M117 K0.02 ; 
+G1 E0.5 F1800 ; un-retract
+G1 X131 Y112.5 E0.9978 F300 ; print line
+G1 X171 Y112.5 E1.99561 F7200 ; print line
+G1 X191 Y112.5 E0.9978 F300 ; print line
+G1 E-0.5 F3000 ; retract
+G1 X111 Y117.5 F6000 ; move to start
+SET_PRESSURE_ADVANCE ADVANCE=0.025 ; set Pressure Advance
+M117 K0.025 ; 
+G1 E0.5 F1800 ; un-retract
+G1 X131 Y117.5 E0.9978 F300 ; print line
+G1 X171 Y117.5 E1.99561 F7200 ; print line
+G1 X191 Y117.5 E0.9978 F300 ; print line
+G1 E-0.5 F3000 ; retract
+G1 X111 Y122.5 F6000 ; move to start
+SET_PRESSURE_ADVANCE ADVANCE=0.03 ; set Pressure Advance
+M117 K0.03 ; 
+G1 E0.5 F1800 ; un-retract
+G1 X131 Y122.5 E0.9978 F300 ; print line
+G1 X171 Y122.5 E1.99561 F7200 ; print line
+G1 X191 Y122.5 E0.9978 F300 ; print line
+G1 E-0.5 F3000 ; retract
+G1 X111 Y127.5 F6000 ; move to start
+SET_PRESSURE_ADVANCE ADVANCE=0.035 ; set Pressure Advance
+M117 K0.035 ; 
+G1 E0.5 F1800 ; un-retract
+G1 X131 Y127.5 E0.9978 F300 ; print line
+G1 X171 Y127.5 E1.99561 F7200 ; print line
+G1 X191 Y127.5 E0.9978 F300 ; print line
+G1 E-0.5 F3000 ; retract
+G1 X111 Y132.5 F6000 ; move to start
+SET_PRESSURE_ADVANCE ADVANCE=0.04 ; set Pressure Advance
+M117 K0.04 ; 
+G1 E0.5 F1800 ; un-retract
+G1 X131 Y132.5 E0.9978 F300 ; print line
+G1 X171 Y132.5 E1.99561 F7200 ; print line
+G1 X191 Y132.5 E0.9978 F300 ; print line
+G1 E-0.5 F3000 ; retract
+G1 X111 Y137.5 F6000 ; move to start
+SET_PRESSURE_ADVANCE ADVANCE=0.045 ; set Pressure Advance
+M117 K0.045 ; 
+G1 E0.5 F1800 ; un-retract
+G1 X131 Y137.5 E0.9978 F300 ; print line
+G1 X171 Y137.5 E1.99561 F7200 ; print line
+G1 X191 Y137.5 E0.9978 F300 ; print line
+G1 E-0.5 F3000 ; retract
+G1 X111 Y142.5 F6000 ; move to start
+SET_PRESSURE_ADVANCE ADVANCE=0.05 ; set Pressure Advance
+M117 K0.05 ; 
+G1 E0.5 F1800 ; un-retract
+G1 X131 Y142.5 E0.9978 F300 ; print line
+G1 X171 Y142.5 E1.99561 F7200 ; print line
+G1 X191 Y142.5 E0.9978 F300 ; print line
+G1 E-0.5 F3000 ; retract
+G1 X111 Y147.5 F6000 ; move to start
+SET_PRESSURE_ADVANCE ADVANCE=0.055 ; set Pressure Advance
+M117 K0.055 ; 
+G1 E0.5 F1800 ; un-retract
+G1 X131 Y147.5 E0.9978 F300 ; print line
+G1 X171 Y147.5 E1.99561 F7200 ; print line
+G1 X191 Y147.5 E0.9978 F300 ; print line
+G1 E-0.5 F3000 ; retract
+G1 X111 Y152.5 F6000 ; move to start
+SET_PRESSURE_ADVANCE ADVANCE=0.06 ; set Pressure Advance
+M117 K0.06 ; 
+G1 E0.5 F1800 ; un-retract
+G1 X131 Y152.5 E0.9978 F300 ; print line
+G1 X171 Y152.5 E1.99561 F7200 ; print line
+G1 X191 Y152.5 E0.9978 F300 ; print line
+G1 E-0.5 F3000 ; retract
+G1 X111 Y157.5 F6000 ; move to start
+SET_PRESSURE_ADVANCE ADVANCE=0.065 ; set Pressure Advance
+M117 K0.065 ; 
+G1 E0.5 F1800 ; un-retract
+G1 X131 Y157.5 E0.9978 F300 ; print line
+G1 X171 Y157.5 E1.99561 F7200 ; print line
+G1 X191 Y157.5 E0.9978 F300 ; print line
+G1 E-0.5 F3000 ; retract
+G1 X111 Y162.5 F6000 ; move to start
+SET_PRESSURE_ADVANCE ADVANCE=0.07 ; set Pressure Advance
+M117 K0.07 ; 
+G1 E0.5 F1800 ; un-retract
+G1 X131 Y162.5 E0.9978 F300 ; print line
+G1 X171 Y162.5 E1.99561 F7200 ; print line
+G1 X191 Y162.5 E0.9978 F300 ; print line
+G1 E-0.5 F3000 ; retract
+G1 X111 Y167.5 F6000 ; move to start
+SET_PRESSURE_ADVANCE ADVANCE=0.075 ; set Pressure Advance
+M117 K0.075 ; 
+G1 E0.5 F1800 ; un-retract
+G1 X131 Y167.5 E0.9978 F300 ; print line
+G1 X171 Y167.5 E1.99561 F7200 ; print line
+G1 X191 Y167.5 E0.9978 F300 ; print line
+G1 E-0.5 F3000 ; retract
+G1 X111 Y172.5 F6000 ; move to start
+SET_PRESSURE_ADVANCE ADVANCE=0.08 ; set Pressure Advance
+M117 K0.08 ; 
+G1 E0.5 F1800 ; un-retract
+G1 X131 Y172.5 E0.9978 F300 ; print line
+G1 X171 Y172.5 E1.99561 F7200 ; print line
+G1 X191 Y172.5 E0.9978 F300 ; print line
+G1 E-0.5 F3000 ; retract
+G1 X111 Y177.5 F6000 ; move to start
+SET_PRESSURE_ADVANCE ADVANCE=0.085 ; set Pressure Advance
+M117 K0.085 ; 
+G1 E0.5 F1800 ; un-retract
+G1 X131 Y177.5 E0.9978 F300 ; print line
+G1 X171 Y177.5 E1.99561 F7200 ; print line
+G1 X191 Y177.5 E0.9978 F300 ; print line
+G1 E-0.5 F3000 ; retract
+G1 X111 Y182.5 F6000 ; move to start
+SET_PRESSURE_ADVANCE ADVANCE=0.09 ; set Pressure Advance
+M117 K0.09 ; 
+G1 E0.5 F1800 ; un-retract
+G1 X131 Y182.5 E0.9978 F300 ; print line
+G1 X171 Y182.5 E1.99561 F7200 ; print line
+G1 X191 Y182.5 E0.9978 F300 ; print line
+G1 E-0.5 F3000 ; retract
+G1 X111 Y187.5 F6000 ; move to start
+SET_PRESSURE_ADVANCE ADVANCE=0.095 ; set Pressure Advance
+M117 K0.095 ; 
+G1 E0.5 F1800 ; un-retract
+G1 X131 Y187.5 E0.9978 F300 ; print line
+G1 X171 Y187.5 E1.99561 F7200 ; print line
+G1 X191 Y187.5 E0.9978 F300 ; print line
+G1 E-0.5 F3000 ; retract
+G1 X111 Y192.5 F6000 ; move to start
+;
+; Mark the test area for reference
+M117 K0
+SET_PRESSURE_ADVANCE ADVANCE=0 ; Set Pressure Advance 0
+G1 X131 Y197.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X131 Y217.5 E0.9978 F300 ; print line
+G1 E-0.5 F3000 ; retract
+G1 X171 Y197.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X171 Y217.5 E0.9978 F300 ; print line
+G1 E-0.5 F3000 ; retract
+G1 Z0.35 F300 ; zHop
+;
+; print K-values
+;
+G1 X193 Y90.5 F6000 ; move to start
+G1 Z0.25 F300 ; zHop
+G1 E0.5 F1800 ; un-retract
+G1 X195 Y90.5 E0.09978 F300 ; 0
+G1 X195 Y92.5 E0.09978 F300 ; 0
+G1 X195 Y94.5 E0.09978 F300 ; 0
+G1 X193 Y94.5 E0.09978 F300 ; 0
+G1 X193 Y92.5 E0.09978 F300 ; 0
+G1 X193 Y90.5 E0.09978 F300 ; 0
+G1 E-0.5 F3000 ; retract
+G1 Z0.35 F300 ; zHop
+G1 X193 Y100.5 F6000 ; move to start
+G1 Z0.25 F300 ; zHop
+G1 E0.5 F1800 ; un-retract
+G1 X195 Y100.5 E0.09978 F300 ; 0
+G1 X195 Y102.5 E0.09978 F300 ; 0
+G1 X195 Y104.5 E0.09978 F300 ; 0
+G1 X193 Y104.5 E0.09978 F300 ; 0
+G1 X193 Y102.5 E0.09978 F300 ; 0
+G1 X193 Y100.5 E0.09978 F300 ; 0
+G1 E-0.5 F3000 ; retract
+G1 X196 Y100.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X196 Y100.9 E0.01996 F300 ; dot
+G1 E-0.5 F3000 ; retract
+G1 X197 Y100.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X199 Y100.5 E0.09978 F300 ; 0
+G1 X199 Y102.5 E0.09978 F300 ; 0
+G1 X199 Y104.5 E0.09978 F300 ; 0
+G1 X197 Y104.5 E0.09978 F300 ; 0
+G1 X197 Y102.5 E0.09978 F300 ; 0
+G1 X197 Y100.5 E0.09978 F300 ; 0
+G1 E-0.5 F3000 ; retract
+G1 X200 Y100.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X200 Y102.5 E0.09978 F300 ; 1
+G1 X200 Y104.5 E0.09978 F300 ; 1
+G1 E-0.5 F3000 ; retract
+G1 Z0.35 F300 ; zHop
+G1 X193 Y110.5 F6000 ; move to start
+G1 Z0.25 F300 ; zHop
+G1 E0.5 F1800 ; un-retract
+G1 X195 Y110.5 E0.09978 F300 ; 0
+G1 X195 Y112.5 E0.09978 F300 ; 0
+G1 X195 Y114.5 E0.09978 F300 ; 0
+G1 X193 Y114.5 E0.09978 F300 ; 0
+G1 X193 Y112.5 E0.09978 F300 ; 0
+G1 X193 Y110.5 E0.09978 F300 ; 0
+G1 E-0.5 F3000 ; retract
+G1 X196 Y110.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X196 Y110.9 E0.01996 F300 ; dot
+G1 E-0.5 F3000 ; retract
+G1 X197 Y110.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X199 Y110.5 E0.09978 F300 ; 0
+G1 X199 Y112.5 E0.09978 F300 ; 0
+G1 X199 Y114.5 E0.09978 F300 ; 0
+G1 X197 Y114.5 E0.09978 F300 ; 0
+G1 X197 Y112.5 E0.09978 F300 ; 0
+G1 X197 Y110.5 E0.09978 F300 ; 0
+G1 E-0.5 F3000 ; retract
+G1 X200 Y110.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X200 Y112.5 F6000 ; move to start
+G1 X200 Y114.5 F6000 ; move to start
+G1 X202 Y114.5 E0.09978 F300 ; 2
+G1 X202 Y112.5 E0.09978 F300 ; 2
+G1 X200 Y112.5 E0.09978 F300 ; 2
+G1 X200 Y110.5 E0.09978 F300 ; 2
+G1 X202 Y110.5 E0.09978 F300 ; 2
+G1 E-0.5 F3000 ; retract
+G1 Z0.35 F300 ; zHop
+G1 X193 Y120.5 F6000 ; move to start
+G1 Z0.25 F300 ; zHop
+G1 E0.5 F1800 ; un-retract
+G1 X195 Y120.5 E0.09978 F300 ; 0
+G1 X195 Y122.5 E0.09978 F300 ; 0
+G1 X195 Y124.5 E0.09978 F300 ; 0
+G1 X193 Y124.5 E0.09978 F300 ; 0
+G1 X193 Y122.5 E0.09978 F300 ; 0
+G1 X193 Y120.5 E0.09978 F300 ; 0
+G1 E-0.5 F3000 ; retract
+G1 X196 Y120.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X196 Y120.9 E0.01996 F300 ; dot
+G1 E-0.5 F3000 ; retract
+G1 X197 Y120.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X199 Y120.5 E0.09978 F300 ; 0
+G1 X199 Y122.5 E0.09978 F300 ; 0
+G1 X199 Y124.5 E0.09978 F300 ; 0
+G1 X197 Y124.5 E0.09978 F300 ; 0
+G1 X197 Y122.5 E0.09978 F300 ; 0
+G1 X197 Y120.5 E0.09978 F300 ; 0
+G1 E-0.5 F3000 ; retract
+G1 X200 Y120.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X200 Y122.5 F6000 ; move to start
+G1 X200 Y124.5 F6000 ; move to start
+G1 X202 Y124.5 E0.09978 F300 ; 3
+G1 X202 Y122.5 E0.09978 F300 ; 3
+G1 X202 Y120.5 E0.09978 F300 ; 3
+G1 X200 Y120.5 E0.09978 F300 ; 3
+G1 X200 Y122.5 F6000 ; move to start
+G1 X202 Y122.5 E0.09978 F300 ; 3
+G1 E-0.5 F3000 ; retract
+G1 Z0.35 F300 ; zHop
+G1 X193 Y130.5 F6000 ; move to start
+G1 Z0.25 F300 ; zHop
+G1 E0.5 F1800 ; un-retract
+G1 X195 Y130.5 E0.09978 F300 ; 0
+G1 X195 Y132.5 E0.09978 F300 ; 0
+G1 X195 Y134.5 E0.09978 F300 ; 0
+G1 X193 Y134.5 E0.09978 F300 ; 0
+G1 X193 Y132.5 E0.09978 F300 ; 0
+G1 X193 Y130.5 E0.09978 F300 ; 0
+G1 E-0.5 F3000 ; retract
+G1 X196 Y130.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X196 Y130.9 E0.01996 F300 ; dot
+G1 E-0.5 F3000 ; retract
+G1 X197 Y130.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X199 Y130.5 E0.09978 F300 ; 0
+G1 X199 Y132.5 E0.09978 F300 ; 0
+G1 X199 Y134.5 E0.09978 F300 ; 0
+G1 X197 Y134.5 E0.09978 F300 ; 0
+G1 X197 Y132.5 E0.09978 F300 ; 0
+G1 X197 Y130.5 E0.09978 F300 ; 0
+G1 E-0.5 F3000 ; retract
+G1 X200 Y130.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X200 Y132.5 F6000 ; move to start
+G1 X200 Y134.5 F6000 ; move to start
+G1 X200 Y132.5 E0.09978 F300 ; 4
+G1 X202 Y132.5 E0.09978 F300 ; 4
+G1 X202 Y134.5 F6000 ; move to start
+G1 X202 Y132.5 E0.09978 F300 ; 4
+G1 X202 Y130.5 E0.09978 F300 ; 4
+G1 E-0.5 F3000 ; retract
+G1 Z0.35 F300 ; zHop
+G1 X193 Y140.5 F6000 ; move to start
+G1 Z0.25 F300 ; zHop
+G1 E0.5 F1800 ; un-retract
+G1 X195 Y140.5 E0.09978 F300 ; 0
+G1 X195 Y142.5 E0.09978 F300 ; 0
+G1 X195 Y144.5 E0.09978 F300 ; 0
+G1 X193 Y144.5 E0.09978 F300 ; 0
+G1 X193 Y142.5 E0.09978 F300 ; 0
+G1 X193 Y140.5 E0.09978 F300 ; 0
+G1 E-0.5 F3000 ; retract
+G1 X196 Y140.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X196 Y140.9 E0.01996 F300 ; dot
+G1 E-0.5 F3000 ; retract
+G1 X197 Y140.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X199 Y140.5 E0.09978 F300 ; 0
+G1 X199 Y142.5 E0.09978 F300 ; 0
+G1 X199 Y144.5 E0.09978 F300 ; 0
+G1 X197 Y144.5 E0.09978 F300 ; 0
+G1 X197 Y142.5 E0.09978 F300 ; 0
+G1 X197 Y140.5 E0.09978 F300 ; 0
+G1 E-0.5 F3000 ; retract
+G1 X200 Y140.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X202 Y140.5 E0.09978 F300 ; 5
+G1 X202 Y142.5 E0.09978 F300 ; 5
+G1 X200 Y142.5 E0.09978 F300 ; 5
+G1 X200 Y144.5 E0.09978 F300 ; 5
+G1 X202 Y144.5 E0.09978 F300 ; 5
+G1 E-0.5 F3000 ; retract
+G1 Z0.35 F300 ; zHop
+G1 X193 Y150.5 F6000 ; move to start
+G1 Z0.25 F300 ; zHop
+G1 E0.5 F1800 ; un-retract
+G1 X195 Y150.5 E0.09978 F300 ; 0
+G1 X195 Y152.5 E0.09978 F300 ; 0
+G1 X195 Y154.5 E0.09978 F300 ; 0
+G1 X193 Y154.5 E0.09978 F300 ; 0
+G1 X193 Y152.5 E0.09978 F300 ; 0
+G1 X193 Y150.5 E0.09978 F300 ; 0
+G1 E-0.5 F3000 ; retract
+G1 X196 Y150.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X196 Y150.9 E0.01996 F300 ; dot
+G1 E-0.5 F3000 ; retract
+G1 X197 Y150.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X199 Y150.5 E0.09978 F300 ; 0
+G1 X199 Y152.5 E0.09978 F300 ; 0
+G1 X199 Y154.5 E0.09978 F300 ; 0
+G1 X197 Y154.5 E0.09978 F300 ; 0
+G1 X197 Y152.5 E0.09978 F300 ; 0
+G1 X197 Y150.5 E0.09978 F300 ; 0
+G1 E-0.5 F3000 ; retract
+G1 X200 Y150.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X200 Y152.5 F6000 ; move to start
+G1 X202 Y152.5 E0.09978 F300 ; 6
+G1 X202 Y150.5 E0.09978 F300 ; 6
+G1 X200 Y150.5 E0.09978 F300 ; 6
+G1 X200 Y152.5 E0.09978 F300 ; 6
+G1 X200 Y154.5 E0.09978 F300 ; 6
+G1 X202 Y154.5 E0.09978 F300 ; 6
+G1 E-0.5 F3000 ; retract
+G1 Z0.35 F300 ; zHop
+G1 X193 Y160.5 F6000 ; move to start
+G1 Z0.25 F300 ; zHop
+G1 E0.5 F1800 ; un-retract
+G1 X195 Y160.5 E0.09978 F300 ; 0
+G1 X195 Y162.5 E0.09978 F300 ; 0
+G1 X195 Y164.5 E0.09978 F300 ; 0
+G1 X193 Y164.5 E0.09978 F300 ; 0
+G1 X193 Y162.5 E0.09978 F300 ; 0
+G1 X193 Y160.5 E0.09978 F300 ; 0
+G1 E-0.5 F3000 ; retract
+G1 X196 Y160.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X196 Y160.9 E0.01996 F300 ; dot
+G1 E-0.5 F3000 ; retract
+G1 X197 Y160.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X199 Y160.5 E0.09978 F300 ; 0
+G1 X199 Y162.5 E0.09978 F300 ; 0
+G1 X199 Y164.5 E0.09978 F300 ; 0
+G1 X197 Y164.5 E0.09978 F300 ; 0
+G1 X197 Y162.5 E0.09978 F300 ; 0
+G1 X197 Y160.5 E0.09978 F300 ; 0
+G1 E-0.5 F3000 ; retract
+G1 X200 Y160.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X200 Y162.5 F6000 ; move to start
+G1 X200 Y164.5 F6000 ; move to start
+G1 X202 Y164.5 E0.09978 F300 ; 7
+G1 X202 Y162.5 E0.09978 F300 ; 7
+G1 X202 Y160.5 E0.09978 F300 ; 7
+G1 E-0.5 F3000 ; retract
+G1 Z0.35 F300 ; zHop
+G1 X193 Y170.5 F6000 ; move to start
+G1 Z0.25 F300 ; zHop
+G1 E0.5 F1800 ; un-retract
+G1 X195 Y170.5 E0.09978 F300 ; 0
+G1 X195 Y172.5 E0.09978 F300 ; 0
+G1 X195 Y174.5 E0.09978 F300 ; 0
+G1 X193 Y174.5 E0.09978 F300 ; 0
+G1 X193 Y172.5 E0.09978 F300 ; 0
+G1 X193 Y170.5 E0.09978 F300 ; 0
+G1 E-0.5 F3000 ; retract
+G1 X196 Y170.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X196 Y170.9 E0.01996 F300 ; dot
+G1 E-0.5 F3000 ; retract
+G1 X197 Y170.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X199 Y170.5 E0.09978 F300 ; 0
+G1 X199 Y172.5 E0.09978 F300 ; 0
+G1 X199 Y174.5 E0.09978 F300 ; 0
+G1 X197 Y174.5 E0.09978 F300 ; 0
+G1 X197 Y172.5 E0.09978 F300 ; 0
+G1 X197 Y170.5 E0.09978 F300 ; 0
+G1 E-0.5 F3000 ; retract
+G1 X200 Y170.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X200 Y172.5 F6000 ; move to start
+G1 X202 Y172.5 E0.09978 F300 ; 8
+G1 X202 Y170.5 E0.09978 F300 ; 8
+G1 X200 Y170.5 E0.09978 F300 ; 8
+G1 X200 Y172.5 E0.09978 F300 ; 8
+G1 X200 Y174.5 E0.09978 F300 ; 8
+G1 X202 Y174.5 E0.09978 F300 ; 8
+G1 X202 Y172.5 E0.09978 F300 ; 8
+G1 E-0.5 F3000 ; retract
+G1 Z0.35 F300 ; zHop
+G1 X193 Y180.5 F6000 ; move to start
+G1 Z0.25 F300 ; zHop
+G1 E0.5 F1800 ; un-retract
+G1 X195 Y180.5 E0.09978 F300 ; 0
+G1 X195 Y182.5 E0.09978 F300 ; 0
+G1 X195 Y184.5 E0.09978 F300 ; 0
+G1 X193 Y184.5 E0.09978 F300 ; 0
+G1 X193 Y182.5 E0.09978 F300 ; 0
+G1 X193 Y180.5 E0.09978 F300 ; 0
+G1 E-0.5 F3000 ; retract
+G1 X196 Y180.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X196 Y180.9 E0.01996 F300 ; dot
+G1 E-0.5 F3000 ; retract
+G1 X197 Y180.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X199 Y180.5 E0.09978 F300 ; 0
+G1 X199 Y182.5 E0.09978 F300 ; 0
+G1 X199 Y184.5 E0.09978 F300 ; 0
+G1 X197 Y184.5 E0.09978 F300 ; 0
+G1 X197 Y182.5 E0.09978 F300 ; 0
+G1 X197 Y180.5 E0.09978 F300 ; 0
+G1 E-0.5 F3000 ; retract
+G1 X200 Y180.5 F6000 ; move to start
+G1 E0.5 F1800 ; un-retract
+G1 X202 Y180.5 E0.09978 F300 ; 9
+G1 X202 Y182.5 E0.09978 F300 ; 9
+G1 X200 Y182.5 E0.09978 F300 ; 9
+G1 X200 Y184.5 E0.09978 F300 ; 9
+G1 X202 Y184.5 E0.09978 F300 ; 9
+G1 X202 Y182.5 E0.09978 F300 ; 9
+G1 E-0.5 F3000 ; retract
+G1 Z0.35 F300 ; zHop
+;
+; FINISH
+;
+END_PRINT
+;
