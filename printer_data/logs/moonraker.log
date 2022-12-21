@@ -1,0 +1,281 @@
+--------------------Moonraker Log Start--------------------
+data_path: /home/pi/printer_data
+is_default_data_path: False
+config_file: /home/pi/klipper_config/moonraker.conf
+startup_warnings: []
+verbose: False
+debug: False
+asyncio_debug: False
+is_backup_config: False
+log_file: /home/pi/printer_data/logs/moonraker.log
+software_version: v0.7.1-780-gdde9bcc
+python_version: 3.7.3 (default, Jan 22 2021, 20:04:44)  [GCC 8.3.0]
+
+#################### Moonraker Configuration ####################
+
+[server]
+host = 0.0.0.0
+port = 7125
+
+[file_manager]
+enable_object_processing = True
+
+[secrets]
+
+[machine]
+sudo_password = {secrets.sudo.password}
+
+[data_store]
+temperature_store_size = 600
+gcode_store_size = 1000
+
+[authorization]
+cors_domains = 
+	*.local
+	*.lan
+	*://app.fluidd.xyz
+trusted_clients = 
+	10.0.0.0/8
+	127.0.0.0/8
+	169.254.0.0/16
+	172.16.0.0/12
+	192.168.0.0/16
+	FE80::/10
+	::1/128
+
+[history]
+
+[octoprint_compat]
+
+[update_manager]
+enable_auto_refresh = True
+
+[update_manager fluidd]
+type = web
+repo = fluidd-core/fluidd
+path = ~/fluidd
+
+[update_manager moonraker-telegram]
+type = git_repo
+path = /home/pi/moonraker-telegram
+origin = https://github.com/Raabi91/moonraker-telegram.git
+env = /home/pi/.moonraker-telegram-env/bin/python
+requirements = scripts/moonraker-telegram-requirements.txt
+install_script = scripts/install.sh
+
+#################################################################
+All Configuration Files:
+/home/pi/klipper_config/moonraker.conf
+#################################################################
+Unsafe Shutdown Count: 61
+
+System Info:
+
+***python***
+  version: sys.version_info(major=3, minor=7, micro=3, releaselevel='final', serial=0)
+  version_string: 3.7.3 (default, Jan 22 2021, 20:04:44)  [GCC 8.3.0]
+
+***cpu_info***
+  cpu_count: 4
+  bits: 32bit
+  processor: armv7l
+  cpu_desc: ARMv7 Processor rev 4 (v7l)
+  serial_number: a4408303
+  hardware_desc: BCM2835
+  model: Raspberry Pi 3 Model B Rev 1.2
+  total_memory: 892584
+  memory_units: kB
+
+***sd_info***
+  manufacturer_id: 1b
+  manufacturer: Samsung
+  oem_id: 534d
+  product_name: EB1QT
+  product_revision: 3.0
+  serial_number: 82ea5f70
+  manufacturer_date: 5/2017
+  capacity: 29.8 GiB
+  total_bytes: 32010928128
+
+***distribution***
+  name: Raspbian GNU/Linux 10 (buster)
+  id: raspbian
+  version: 10
+  version_parts: {'major': '10', 'minor': '', 'build_number': ''}
+  like: debian
+  codename: buster
+  release_info: {'name': '0.', 'version_id': '2.0', 'id': 'fluiddpi'}
+
+***virtualization***
+  virt_type: none
+  virt_identifier: none
+
+***network***
+
+***canbus***
+
+Systemd unit moonraker.service:
+unit_name: moonraker.service
+is_default: True
+Properties:
+**Requires=['system.slice', 'network-online.target', 'sysinit.target', '-.mount']
+**After=['network-online.target', 'system.slice', '-.mount', 'basic.target', 'systemd-journald.socket', 'sysinit.target']
+**SupplementaryGroups=['moonraker-admin']
+**EnvironmentFiles=/home/pi/printer_data/systemd/moonraker.env
+**ExecStart=/home/pi/moonraker-env/bin/python $MOONRAKER_ARGS
+**WorkingDirectory=/home/pi/moonraker
+**FragmentPath=/etc/systemd/system/moonraker.service
+**Description=API Server for Klipper SV1
+**User=pi
+
+Systemd unit klipper.service:
+unit_name: klipper.service
+is_default: True
+Properties:
+**Description=LSB: Klipper daemon
+**ExecStart=/etc/init.d/klipper start
+**FragmentPath=/run/systemd/generator.late/klipper.service
+Klipper Version: v0.11.0-30-gb0d9cbfb
+2022-12-20 00:17:18,982 [update_manager.py:_handle_auto_refresh()] - Klippy is printing, auto refresh aborted
+2022-12-20 01:37:15,973 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 127.0.0.1
+2022-12-20 08:13:11,595 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.6.7
+2022-12-20 08:13:11,714 [app.py:log_request()] - 101 GET /websocket?token=3EBA7JC6DSS55LVWFXBDDY32ZISQELLA (192.168.6.7) [_TRUSTED_USER_] 4.58ms
+2022-12-20 08:13:11,715 [websockets.py:open()] - Websocket Opened: ID: 1747070384, Proxied: False, User Agent: , Host Name: 192.168.6.6
+2022-12-20 08:13:11,780 [app.py:log_request()] - 404 GET /machine/device_power/devices (192.168.6.7) [No User] 4.60ms
+2022-12-20 08:13:12,480 [file_manager.py:get_file_list()] - Updating File List <gcodes>...
+2022-12-20 08:18:27,697 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.1.7
+2022-12-20 08:18:30,579 [shell_command.py:run_with_response()] - /home/pi/moonraker-env/bin/python: Object Processing is enabled
+INFO:prepropress_cancellation:Shapely not found, complex hulls disabled
+Performing Object Processing on file: drawer-Creality CR-10S Pro V2-PLA.gcode, sliced by SuperSlicer
+
+2022-12-20 08:18:30,580 [shell_command.py:_check_proc_success()] - Command (/home/pi/moonraker-env/bin/python /home/pi/moonraker/moonraker/components/file_manager/metadata.py -p /home/pi/gcode_files -f "drawer-Creality CR-10S Pro V2-PLA.gcode" --check-objects) successfully finished
+2022-12-20 08:18:30,606 [app.py:log_request()] - 201 POST /api/files/local (192.168.1.7) [_TRUSTED_USER_] 2540.21ms
+2022-12-20 08:19:05,963 [shell_command.py:run_with_response()] - /home/pi/moonraker-env/bin/python: Object Processing is enabled
+INFO:prepropress_cancellation:Shapely not found, complex hulls disabled
+Performing Object Processing on file: 1x2(2)-Creality CR-10S Pro V2-PLA.gcode, sliced by SuperSlicer
+
+2022-12-20 08:19:05,963 [shell_command.py:_check_proc_success()] - Command (/home/pi/moonraker-env/bin/python /home/pi/moonraker/moonraker/components/file_manager/metadata.py -p /home/pi/gcode_files -f "1x2(2)-Creality CR-10S Pro V2-PLA.gcode" --check-objects) successfully finished
+2022-12-20 08:19:05,988 [app.py:log_request()] - 201 POST /api/files/local (192.168.1.7) [_TRUSTED_USER_] 4599.22ms
+2022-12-20 08:19:39,603 [job_state.py:_status_update()] - Job Started: 1x2(2)-Creality CR-10S Pro V2-PLA.gcode
+2022-12-20 08:19:39,617 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 127.0.0.1
+2022-12-20 09:17:16,089 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.6.7
+2022-12-20 09:22:16,091 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.1.7
+2022-12-20 10:58:12,958 [websockets.py:on_close()] - Websocket Closed: ID: 1747381424 Close Code: None, Close Reason: None, Pong Time Elapsed: 0.46
+2022-12-20 10:58:24,694 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.1.7
+2022-12-20 10:58:25,106 [app.py:log_request()] - 101 GET /websocket?token=67WRPDIPNIHFLQCYE2POPZZBA6VROWYF (192.168.1.7) [_TRUSTED_USER_] 5.46ms
+2022-12-20 10:58:25,108 [websockets.py:open()] - Websocket Opened: ID: 1747273392, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/108.0, Host Name: 192.168.6.6
+2022-12-20 10:58:25,121 [websockets.py:_handle_identify()] - Websocket 1747273392 Client Identified - Name: fluidd, Version: 1.22.1-71bec92, Type: web
+2022-12-20 10:58:25,123 [file_manager.py:get_file_list()] - Updating File List <config>...
+2022-12-20 11:01:21,558 [websockets.py:on_close()] - Websocket Closed: ID: 1747070384 Close Code: 1000, Close Reason: None, Pong Time Elapsed: 9.83
+2022-12-20 11:14:48,900 [websockets.py:on_close()] - Websocket Closed: ID: 1747273392 Close Code: None, Close Reason: None, Pong Time Elapsed: 3.78
+2022-12-20 11:26:50,410 [app.py:log_request()] - 101 GET /websocket?token=EVMISSVQVEES653LOBXFQE5V47WMLD4X (192.168.1.7) [_TRUSTED_USER_] 5.11ms
+2022-12-20 11:26:50,411 [websockets.py:open()] - Websocket Opened: ID: 1747230608, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/108.0, Host Name: 192.168.6.6
+2022-12-20 11:26:50,430 [websockets.py:_handle_identify()] - Websocket 1747230608 Client Identified - Name: fluidd, Version: 1.22.1-71bec92, Type: web
+2022-12-20 11:26:50,431 [file_manager.py:get_file_list()] - Updating File List <config>...
+2022-12-20 11:46:34,433 [shell_command.py:run_with_response()] - /home/pi/moonraker-env/bin/python: Object Processing is enabled
+INFO:prepropress_cancellation:Shapely not found, complex hulls disabled
+Performing Object Processing on file: 1x2(2)-Creality CR-10S Pro V2-PLA.gcode, sliced by SuperSlicer
+
+2022-12-20 11:46:34,434 [shell_command.py:_check_proc_success()] - Command (/home/pi/moonraker-env/bin/python /home/pi/moonraker/moonraker/components/file_manager/metadata.py -p /home/pi/gcode_files -f "1x2(2)-Creality CR-10S Pro V2-PLA.gcode" --check-objects) successfully finished
+2022-12-20 11:46:34,460 [app.py:log_request()] - 201 POST /api/files/local (192.168.1.7) [_TRUSTED_USER_] 9118.54ms
+2022-12-20 11:46:40,348 [job_state.py:_status_update()] - Job Started: 1x2(2)-Creality CR-10S Pro V2-PLA.gcode
+2022-12-20 11:46:42,015 [websockets.py:on_close()] - Websocket Closed: ID: 1747230608 Close Code: None, Close Reason: None, Pong Time Elapsed: 1.59
+2022-12-20 12:08:26,248 [websockets.py:write_to_socket()] - Websocket closed while writing: 1747070864
+2022-12-20 12:08:27,839 [websockets.py:on_close()] - Websocket Closed: ID: 1747070864 Close Code: 1000, Close Reason: None, Pong Time Elapsed: 0.07
+2022-12-20 12:08:37,858 [app.py:log_request()] - 101 GET /websocket (127.0.0.1) [_TRUSTED_USER_] 5.63ms
+2022-12-20 12:08:37,859 [websockets.py:open()] - Websocket Opened: ID: 1747380496, Proxied: False, User Agent: , Host Name: 127.0.0.1
+2022-12-20 12:26:08,100 [websockets.py:write_to_socket()] - Websocket closed while writing: 1747380496
+2022-12-20 12:26:12,865 [websockets.py:on_close()] - Websocket Closed: ID: 1747380496 Close Code: None, Close Reason: None, Pong Time Elapsed: 45.00
+2022-12-20 12:26:27,347 [app.py:log_request()] - 101 GET /websocket (127.0.0.1) [_TRUSTED_USER_] 7.52ms
+2022-12-20 12:26:27,349 [websockets.py:open()] - Websocket Opened: ID: 1747378544, Proxied: False, User Agent: , Host Name: 127.0.0.1
+2022-12-20 12:32:20,502 [app.py:log_request()] - 101 GET /websocket?token=ZKX3WCBXRRXCTIU2VMUY5N4JAE3TSMAY (192.168.1.7) [_TRUSTED_USER_] 5.07ms
+2022-12-20 12:32:20,503 [websockets.py:open()] - Websocket Opened: ID: 1747317392, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/108.0, Host Name: 192.168.6.6
+2022-12-20 12:32:20,579 [websockets.py:_handle_identify()] - Websocket 1747317392 Client Identified - Name: fluidd, Version: 1.22.1-71bec92, Type: web
+2022-12-20 12:32:20,581 [file_manager.py:get_file_list()] - Updating File List <config>...
+2022-12-20 12:32:26,123 [websockets.py:on_close()] - Websocket Closed: ID: 1747317392 Close Code: None, Close Reason: None, Pong Time Elapsed: 5.62
+2022-12-20 13:01:37,376 [websockets.py:write_to_socket()] - Websocket closed while writing: 1747378544
+2022-12-20 13:01:42,353 [websockets.py:on_close()] - Websocket Closed: ID: 1747378544 Close Code: None, Close Reason: None, Pong Time Elapsed: 45.00
+2022-12-20 13:01:54,672 [app.py:log_request()] - 101 GET /websocket (127.0.0.1) [_TRUSTED_USER_] 6.40ms
+2022-12-20 13:01:54,674 [websockets.py:open()] - Websocket Opened: ID: 1747007248, Proxied: False, User Agent: , Host Name: 127.0.0.1
+2022-12-20 13:37:16,159 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.1.7
+2022-12-20 14:13:14,727 [websockets.py:write_to_socket()] - Websocket closed while writing: 1747007248
+2022-12-20 14:13:16,851 [websockets.py:on_close()] - Websocket Closed: ID: 1747007248 Close Code: 1000, Close Reason: None, Pong Time Elapsed: 0.07
+2022-12-20 14:13:26,872 [app.py:log_request()] - 101 GET /websocket (127.0.0.1) [_TRUSTED_USER_] 5.86ms
+2022-12-20 14:13:26,873 [websockets.py:open()] - Websocket Opened: ID: 1978169520, Proxied: False, User Agent: , Host Name: 127.0.0.1
+2022-12-20 15:47:22,463 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.6.7
+2022-12-20 15:47:22,585 [app.py:log_request()] - 101 GET /websocket?token=UIYHGFAE6IDQTNEICNJXLQ7YDV37TJPT (192.168.6.7) [_TRUSTED_USER_] 4.55ms
+2022-12-20 15:47:22,586 [websockets.py:open()] - Websocket Opened: ID: 1978171344, Proxied: False, User Agent: , Host Name: 192.168.6.6
+2022-12-20 15:47:22,652 [app.py:log_request()] - 404 GET /machine/device_power/devices (192.168.6.7) [No User] 3.94ms
+2022-12-20 15:47:23,220 [file_manager.py:get_file_list()] - Updating File List <gcodes>...
+2022-12-20 15:49:45,854 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.1.7
+2022-12-20 15:49:46,525 [app.py:log_request()] - 101 GET /websocket?token=LQYL3YT7NSUJK4XN66NXE3METQJAEB5V (192.168.1.7) [_TRUSTED_USER_] 5.51ms
+2022-12-20 15:49:46,526 [websockets.py:open()] - Websocket Opened: ID: 1747117712, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/108.0, Host Name: 192.168.6.6
+2022-12-20 15:49:46,564 [websockets.py:_handle_identify()] - Websocket 1747117712 Client Identified - Name: fluidd, Version: 1.22.1-71bec92, Type: web
+2022-12-20 15:49:46,566 [file_manager.py:get_file_list()] - Updating File List <config>...
+2022-12-20 15:50:51,872 [shell_command.py:run_with_response()] - /home/pi/moonraker-env/bin/python: Object Processing is enabled
+INFO:prepropress_cancellation:Shapely not found, complex hulls disabled
+Performing Object Processing on file: drawer-Creality CR-10S Pro V2-PLA.gcode, sliced by SuperSlicer
+
+2022-12-20 15:50:51,873 [shell_command.py:_check_proc_success()] - Command (/home/pi/moonraker-env/bin/python /home/pi/moonraker/moonraker/components/file_manager/metadata.py -p /home/pi/gcode_files -f "drawer-Creality CR-10S Pro V2-PLA.gcode" --check-objects) successfully finished
+2022-12-20 15:50:51,898 [app.py:log_request()] - 201 POST /api/files/local (192.168.1.7) [_TRUSTED_USER_] 5640.82ms
+2022-12-20 15:50:55,691 [proc_stats.py:_watchdog_callback()] - EVENT LOOP BLOCKED: 4.16 seconds, total blocked count: 1
+2022-12-20 15:50:55,892 [proc_stats.py:log_last_stats()] - 
+System Time: 1671580249.616369, Usage: 2.49%, Memory: 30920 kB
+System Time: 1671580250.620249, Usage: 4.54%, Memory: 30920 kB
+System Time: 1671580251.622720, Usage: 2.45%, Memory: 30920 kB
+System Time: 1671580255.688399, Usage: 73.0%, Memory: 30920 kB
+System Time: 1671580255.730608, Usage: 99.11%, Memory: 30920 kB
+2022-12-20 15:50:58,145 [job_state.py:_status_update()] - Job Started: drawer-Creality CR-10S Pro V2-PLA.gcode
+2022-12-20 15:50:59,865 [websockets.py:on_close()] - Websocket Closed: ID: 1747117712 Close Code: None, Close Reason: None, Pong Time Elapsed: 3.31
+2022-12-20 15:51:09,630 [websockets.py:on_close()] - Websocket Closed: ID: 1978171344 Close Code: 1000, Close Reason: None, Pong Time Elapsed: 6.96
+2022-12-20 16:52:16,223 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.6.7
+2022-12-20 16:52:16,224 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.1.7
+2022-12-20 18:16:17,235 [websockets.py:write_to_socket()] - Websocket closed while writing: 1978169520
+2022-12-20 18:16:19,774 [websockets.py:on_close()] - Websocket Closed: ID: 1978169520 Close Code: 1000, Close Reason: None, Pong Time Elapsed: 0.06
+2022-12-20 18:16:29,797 [app.py:log_request()] - 101 GET /websocket (127.0.0.1) [_TRUSTED_USER_] 6.43ms
+2022-12-20 18:16:29,798 [websockets.py:open()] - Websocket Opened: ID: 1747451728, Proxied: False, User Agent: , Host Name: 127.0.0.1
+2022-12-20 18:56:29,810 [websockets.py:write_to_socket()] - Websocket closed while writing: 1747451728
+2022-12-20 18:56:34,803 [websockets.py:on_close()] - Websocket Closed: ID: 1747451728 Close Code: None, Close Reason: None, Pong Time Elapsed: 45.00
+2022-12-20 18:56:46,067 [app.py:log_request()] - 101 GET /websocket (127.0.0.1) [_TRUSTED_USER_] 6.37ms
+2022-12-20 18:56:46,068 [websockets.py:open()] - Websocket Opened: ID: 1748580208, Proxied: False, User Agent: , Host Name: 127.0.0.1
+2022-12-20 19:15:26,105 [websockets.py:write_to_socket()] - Websocket closed while writing: 1748580208
+2022-12-20 19:15:31,073 [websockets.py:on_close()] - Websocket Closed: ID: 1748580208 Close Code: None, Close Reason: None, Pong Time Elapsed: 45.00
+2022-12-20 19:15:41,545 [app.py:log_request()] - 101 GET /websocket (127.0.0.1) [_TRUSTED_USER_] 7.01ms
+2022-12-20 19:15:41,546 [websockets.py:open()] - Websocket Opened: ID: 1748580048, Proxied: False, User Agent: , Host Name: 127.0.0.1
+2022-12-20 19:26:18,395 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.1.7
+2022-12-20 19:26:18,723 [app.py:log_request()] - 101 GET /websocket?token=2ZK5JQWBT4QCFW3JJB6RQWDMOENEEKGQ (192.168.1.7) [_TRUSTED_USER_] 5.53ms
+2022-12-20 19:26:18,724 [websockets.py:open()] - Websocket Opened: ID: 1747450000, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/108.0, Host Name: 192.168.6.6
+2022-12-20 19:26:18,748 [websockets.py:_handle_identify()] - Websocket 1747450000 Client Identified - Name: fluidd, Version: 1.22.1-71bec92, Type: web
+2022-12-20 19:26:18,750 [file_manager.py:get_file_list()] - Updating File List <config>...
+2022-12-20 19:28:32,399 [shell_command.py:run_with_response()] - /home/pi/moonraker-env/bin/python: Object Processing is enabled
+INFO:prepropress_cancellation:Shapely not found, complex hulls disabled
+Performing Object Processing on file: 2x1-Creality CR-10S Pro V2-PLA.gcode, sliced by SuperSlicer
+
+2022-12-20 19:28:32,399 [shell_command.py:_check_proc_success()] - Command (/home/pi/moonraker-env/bin/python /home/pi/moonraker/moonraker/components/file_manager/metadata.py -p /home/pi/gcode_files -f "2x1-Creality CR-10S Pro V2-PLA.gcode" --check-objects) successfully finished
+2022-12-20 19:28:32,427 [app.py:log_request()] - 201 POST /api/files/local (192.168.1.7) [_TRUSTED_USER_] 7654.38ms
+2022-12-20 19:29:09,949 [job_state.py:_status_update()] - Job Started: 2x1-Creality CR-10S Pro V2-PLA.gcode
+2022-12-20 20:06:46,661 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.6.7
+2022-12-20 20:06:46,749 [app.py:log_request()] - 101 GET /websocket?token=4K4K4QZXGUDPDZCSAGYPZOPBWRGRRWPS (192.168.6.7) [_TRUSTED_USER_] 4.74ms
+2022-12-20 20:06:46,750 [websockets.py:open()] - Websocket Opened: ID: 1978135984, Proxied: False, User Agent: , Host Name: 192.168.6.6
+2022-12-20 20:06:46,788 [app.py:log_request()] - 404 GET /machine/device_power/devices (192.168.6.7) [No User] 4.40ms
+2022-12-20 20:06:47,613 [file_manager.py:get_file_list()] - Updating File List <gcodes>...
+2022-12-20 20:06:58,786 [websockets.py:build_error()] - JSON-RPC Request Error: 400
+{'message': 'Must home axis first: 75.858 237.179 50.388 [146660.497]', 'error': 'WebRequestError'}
+Traceback (most recent call last):
+  File "/home/pi/moonraker/moonraker/websockets.py", line 253, in execute_method
+    result = await callback(params)
+  File "/home/pi/moonraker/moonraker/websockets.py", line 351, in func
+    user=sc.user_info))
+  File "/home/pi/moonraker/moonraker/klippy_connection.py", line 481, in request
+    return await self._request_standard(web_request)
+  File "/home/pi/moonraker/moonraker/klippy_connection.py", line 536, in _request_standard
+    return await base_request.wait()
+  File "/home/pi/moonraker/moonraker/klippy_connection.py", line 608, in wait
+    raise self.response
+utils.ServerError: {'message': 'Must home axis first: 75.858 237.179 50.388 [146660.497]', 'error': 'WebRequestError'}
+2022-12-20 20:08:02,359 [file_manager.py:get_file_list()] - Updating File List <gcodes>...
+2022-12-20 20:08:17,881 [job_state.py:_status_update()] - Job Started: 2x1-Creality CR-10S Pro V2-PLA.gcode
+2022-12-20 20:32:16,295 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.1.7
+2022-12-20 21:07:16,307 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.6.7
+2022-12-20 21:12:58,994 [websockets.py:on_close()] - Websocket Closed: ID: 1978135984 Close Code: 1000, Close Reason: None, Pong Time Elapsed: 2.22
+2022-12-20 21:16:28,080 [websockets.py:on_close()] - Websocket Closed: ID: 1747450000 Close Code: None, Close Reason: None, Pong Time Elapsed: 9.34
